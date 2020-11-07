@@ -18,6 +18,15 @@ class TreeNodeSaber(TreeNode):
     Some comments!
     '''
 
+    def __init__(self):
+
+        # self.name=name
+        print("This is the constructor of TreeNodeSaber")
+
+
+
+
+
     def is_terminal(self):
         # Write some code here!
         print("This is a terminal node you stupid!")
@@ -39,7 +48,7 @@ class TreeNodeSaber(TreeNode):
 
         # You should retern the action "a" which is the position of the 11x11 board here.
         print(dir(self))
-        a=(randrange(3),randrange(3))
+        a=(randrange(11),randrange(11))
 
         return a
 

@@ -156,7 +156,7 @@ class NeuralMCTSPlayer():
 if __name__ == "__main__":
     from gamegui import GameGUI, GUIPlayer
 
-    g = Gomoku(3, True)
+    g = Gomoku(11, True)
     p1 = GUIPlayer(1, g.gui)
     p2 = NeuralMCTSPlayer(g, 100)
 
