@@ -22,6 +22,12 @@ class TreeNodeSaber(TreeNode):
 
         # self.name=name
         print("This is the constructor of TreeNodeSaber")
+        # Determines at which ply are we playing now. Each ply is the level of the game tree.
+        self.ply=0
+        self.xposition=0
+        self.yposition=0
+
+
 
 
 
@@ -90,7 +96,7 @@ class MCTS(MCTSBase):
         Clean up the internal states and make the class ready for a new tree search
         :return: None
         '''
-        # Write some code here!
+        # This method is called in gomoku.py line 149 in get_move method.
         pass
 
 
@@ -111,9 +117,11 @@ class MCTS(MCTSBase):
         :param standardState: board state
         :return: tree node
         '''
-        # Write some code here!
+        # Given that the AI player always plays after the GUIPlayer, the tree node ply should always be and even number.
 
         temp=TreeNodeSaber()
+        temp.ply=self.game.k
+        temp.xposition=np.where(self.game.number==1)
 
         return temp
         # pass

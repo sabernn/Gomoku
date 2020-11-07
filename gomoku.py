@@ -117,7 +117,7 @@ class Gomoku:
             if pi == 1:
                 standardBoard = self.board
             else:
-                standardBoard = self.board[[1, 0]]
+                standardBoard = self.board[[1, 0]]   # Changes the view of the game to the playing side
             x, y = players[pi].get_move(standardBoard)
             if x < 0:
                 break
