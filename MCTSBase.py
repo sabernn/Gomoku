@@ -55,7 +55,10 @@ class MCTSBase:
         Your subclass's constructor must call super().__init__(game)
         :param game: the Gomoku game
         '''
-        self.game = game
+        self.game = game        
+        self.BaseNode=None              # Declaring the base node of the MCTS
+        self.BasePly=game.k             # In which ply of the entire game tree MCTS is going to start
+
 
     @abstractmethod
     def reset(self):

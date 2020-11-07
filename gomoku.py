@@ -115,14 +115,16 @@ class Gomoku:
         self.draw()
         while True:
             if pi == 1:
+                print("GUI is playing!")
                 standardBoard = self.board
             else:
+                print("AI is playing!")
                 standardBoard = self.board[[1, 0]]   # Changes the view of the game to the playing side
             x, y = players[pi].get_move(standardBoard)
             if x < 0:
                 break
             log.debug('player: %d,  move: (%d, %d)' % (pi, x, y))
-            win = self.execute_move(pi, x, y)
+            win = self.execute_move(pi, x, y) # See if the game is finished based on selected x, y of player pi.
             self.draw()
             
             if win is not None:
@@ -146,7 +148,7 @@ class NeuralMCTSPlayer():
         self.n_mcts_per_step = n_mcts_per_step
 
     def get_move(self, standardBoard):
-        self.mcts.reset()
+        self.mcts.reset()  # Start a new Monte Carlo Game Tree (MCTS)
         pi = self.mcts.getActionProb(standardBoard, self.n_mcts_per_step)
         move = np.unravel_index(np.argmax(pi), pi.shape)
         assert(np.sum(standardBoard[:, move[0], move[1]]) == 0)

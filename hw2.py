@@ -121,7 +121,11 @@ class MCTS(MCTSBase):
 
         temp=TreeNodeSaber()
         temp.ply=self.game.k
-        temp.xposition=np.where(self.game.number==1)
+        currentBoard=standardState[0]+standardState[1]
+        temp.freespots=(currentBoard==0)
+        temp.xposition=np.where(self.game.number==1)[0][0]
+        temp.yposition=np.where(self.game.number==1)[1][0]
+       
 
         return temp
         # pass
