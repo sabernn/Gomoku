@@ -111,7 +111,7 @@ class Gomoku:
     def play(self, p1, p2):
         players = {1:p1, -1:p2}
         self.reset()
-        pi = 1
+        pi = 1              # Start wit GUI Player
         self.draw()
         while True:
             if pi == 1:
@@ -148,10 +148,13 @@ class NeuralMCTSPlayer():
         self.n_mcts_per_step = n_mcts_per_step
 
     def get_move(self, standardBoard):
-        self.mcts.reset()  # Start a new Monte Carlo Game Tree (MCTS)
-        pi = self.mcts.getActionProb(standardBoard, self.n_mcts_per_step)
-        move = np.unravel_index(np.argmax(pi), pi.shape)
-        assert(np.sum(standardBoard[:, move[0], move[1]]) == 0)
+        # self.mcts.reset()  # Start a new Monte Carlo Game Tree (MCTS)
+        # pi = self.mcts.getActionProb(standardBoard, self.n_mcts_per_step)
+        # move = np.unravel_index(np.argmax(pi), pi.shape)
+        # assert(np.sum(standardBoard[:, move[0], move[1]]) == 0)
+        move=[int(g.k/2)-1,int(g.k/2)-1]
+        # move[1]=g.k+1
+
         return move
 
 
