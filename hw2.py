@@ -108,11 +108,11 @@ class MCTS(MCTSBase):
         # self.nnet = nnet
         # self.args = args
         self.Qsa = {}  # stores Q values for state (s) and action (a). Datatype: dictionary
-        # self.Nsa = {}  # stores #times edge s,a was visited
+        self.Nsa = {}  # stores #times edge s,a was visited
         # self.Ns = {}  # stores #times board s was visited
         # self.Ps = {}  # stores initial policy (returned by neural net)
 
-        # self.Es = {}  # stores game.getGameEnded ended for board s
+        self.Es = {}  # stores game.getGameEnded ended for board s
         # self.Vs = {}  # stores game.getValidMoves for board s
 
 
@@ -123,6 +123,7 @@ class MCTS(MCTSBase):
         '''
         # This method is called in gomoku.py line 149 in get_move method.
         self.Qsa={}
+        self.Nsa=np.zeros([11,11])
         pass
 
 
@@ -133,8 +134,17 @@ class MCTS(MCTSBase):
         :return: a board_size[0] X board_size[1] matrix of visit counts. It should have zero at locations corresponding to invalid moves at this state.
         '''
 
-        # Write some code here!
-        pass
+        # Test Case: AI plays randomely
+        return np.random.rand(11,11)
+
+        # Counting the visited nodes
+        # print("checkpoint")
+
+        # return self.Nsa[0][0]
+
+        
+
+        # pass
 
 
     def get_treenode(self,standardState):
@@ -145,15 +155,18 @@ class MCTS(MCTSBase):
         '''
         # Given that the AI player always plays after the GUIPlayer, the tree node ply should always be and even number.
 
-        temp=TreeNodeSaber()
-        temp.ply=self.game.k
-        currentBoard=standardState[0]+standardState[1]
-        temp.freespots=(currentBoard==0)
-        temp.xposition=np.where(self.game.number==1)[0][0]
-        temp.yposition=np.where(self.game.number==1)[1][0]
-       
+        if self.game.k==1:
+            return None
+        else:
+            temp=TreeNodeSaber()
+            temp.ply=self.game.k
+            currentBoard=standardState[0]+standardState[1]
+            temp.freespots=(currentBoard==0)
+            temp.xposition=np.where(self.game.number==1)[0][0]
+            temp.yposition=np.where(self.game.number==1)[1][0]
+        
 
-        return temp
+            return temp
         # pass
 
 

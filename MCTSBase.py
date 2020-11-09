@@ -24,6 +24,7 @@ class TreeNode(ABC):
         '''
         :return: the value of the node form the current player's point of view
         '''
+        print(self)
         pass
 
     @abstractmethod
@@ -73,7 +74,8 @@ class MCTSBase:
         :param state: the state represented by this node
         :return: a board_size[0] X board_size[1] matrix of visit counts. It should have zero at locations corresponding to invalid moves at this state.
         '''
-        pass
+        # temp=state.copy()
+        # pass
 
     @abstractmethod
     def get_treenode(self, standardState):
@@ -113,8 +115,8 @@ class MCTSBase:
         Returns:
             probs: a policy matrix the size of the board. The (i, j) entry of the matrix gives the probability of putting a piece at that locationan.
         """
-        for i in range(n_search):
-            self.search(state.copy())
+        # for i in range(n_search):
+            # self.search(state.copy())
 
         counts = self.get_visit_count(state)
         return counts / np.sum(counts)

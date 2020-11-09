@@ -148,11 +148,11 @@ class NeuralMCTSPlayer():
         self.n_mcts_per_step = n_mcts_per_step
 
     def get_move(self, standardBoard):
-        # self.mcts.reset()  # Start a new Monte Carlo Game Tree (MCTS)
-        # pi = self.mcts.getActionProb(standardBoard, self.n_mcts_per_step)
-        # move = np.unravel_index(np.argmax(pi), pi.shape)
+        self.mcts.reset()  # Start a new Monte Carlo Game Tree (MCTS)
+        pi = self.mcts.getActionProb(standardBoard, self.n_mcts_per_step)
+        move = np.unravel_index(np.argmax(pi), pi.shape)
         # assert(np.sum(standardBoard[:, move[0], move[1]]) == 0)
-        move=[int(g.k/2)-1,int(g.k/2)-1]
+        # move=[int(g.k/2)-1,int(g.k/2)-1]
         # move[1]=g.k+1
 
         return move
