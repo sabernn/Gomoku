@@ -115,8 +115,8 @@ class MCTSBase:
         Returns:
             probs: a policy matrix the size of the board. The (i, j) entry of the matrix gives the probability of putting a piece at that locationan.
         """
-        # for i in range(n_search):
-            # self.search(state.copy())
+        for i in range(n_search):
+            self.search(state.copy())
 
         counts = self.get_visit_count(state)
         return counts / np.sum(counts)

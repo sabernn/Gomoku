@@ -1,23 +1,19 @@
 #### Title ####
 
-# HW2: Implementation of Monete Carlo Tree Search for Gomoku game
-# CSC7343 - Fall 2020
-# Instructor: Dr. Jian Zhang
-# Student: Saber Nemati
 
-# NOTE: The search algorithm is implemented but the AI player still plays randomly at this stage.
-# I still can finish the implementation if I have more time.
 
 
 #### Import libraries
 
+# from gomoku import RandomPlayer
 from numpy import random
+import torch
 import numpy as np
 from MCTSBase import TreeNode, MCTSBase
-# from gamegui import GameGUI, GUIPlayer
+from gamegui import GameGUI, GUIPlayer
 import random
 
-#### Defining classes
+
 
 class TreeNodeSaber(TreeNode):
     '''
@@ -115,16 +111,21 @@ class MCTS(MCTSBase):
         This object is instantiated in NeuralMCTSPlayer.__init__() method which is called in __main__ method of gomoku.py at the very beginning.
         '''
         super().__init__(game)
+        # Write some code here!
         print("This is the constructor of MCTS class!")
         # pass
         self.game = game
-
+        # self.nnet = nnet
+        # self.args = args
         self.Qsa = {}  # stores Q values for state (s) and action (a). Datatype: dictionary
         self.Nsa=np.zeros([11,11])  # stores #times edge position (i,j) is visited
-
+        # self.Ns = {}  # stores #times board s was visited
+        # self.Ps = {}  # stores initial policy (returned by neural net)
         self.Nodes=[]  # Stores all the nodes that are on the tree
         self.Nodes.append(TreeNodeSaber(game.board))   # Adding the root node
 
+        self.Es = {}  # stores game.getGameEnded ended for board s
+        # self.Vs = {}  # stores game.getValidMoves for board s
 
 
     def reset(self):
@@ -136,7 +137,7 @@ class MCTS(MCTSBase):
         self.Qsa={}
 
         self.Nsa=np.zeros([11,11])
-        # pass
+        pass
 
 
     def get_visit_count(self,state):

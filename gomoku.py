@@ -99,6 +99,8 @@ class Gomoku:
 
     # execute a move
     def execute_move(self, p, x, y):
+        if np.sum(self.board[:, x, y]) != 0:
+            print("Assert error: "+str(x)+" , "+str(y))
         assert np.sum(self.board[:, x, y]) == 0
 
         self.board[self.convertPlayer(p), x, y] = 1
